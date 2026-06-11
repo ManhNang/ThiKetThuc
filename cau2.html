@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="score" placeholder="Nhập điểm vào đây..">
+    <button id="myBtn">Làm tròn</button>
+    <p id="result"></p>
+    <script>
+        function roundNumber(num){
+            if(num < 48 || num % 5 === 0) return num;
+
+            let multiOf5 = num + 1;
+            for(let i = 1; i < 3; i++){
+                if(multiOf5 % 5 === 0){
+                    return multiOf5;
+                }
+                multiOf5++;
+            }
+
+            return num;
+        }
+        
+        const btn = document.getElementById("myBtn");
+        const result = document.getElementById("result");
+
+        btn.onclick = () => {
+            const score = parseInt(document.getElementById("score").value);
+
+            if(!score || score < 0 || score > 100){
+                result.innerText = "Điểm phải nằm trong khoảng từ 0 đến 100.";
+                return;
+            }
+            
+            result.innerText = `Điểm số sau khi làm tròn theo đúng quy tắc ${roundNumber(score)}`;
+        }
+
+    </script>
+</body>
+</html>

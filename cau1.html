@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="result"></p>
+    <script>
+        const result = document.getElementById('result');
+
+        const n = parseInt(prompt("Nhập số lượng phần tử mảng (tối đa 20 phần tử): "));
+        if(n < 1 || n > 20 || Number.isNaN(n)){
+            alert("Số lượng phần tử không hợp lệ. Số lượng trong khoảng từ 1 đến 20.");
+        }
+
+        const arr = [];
+            for(let i = 0; i < n; i++){
+                arr.push(parseInt(prompt("Nhập phần tử thứ " + (i) + ": ")));
+            }
+
+        let sum = 0;
+        for(let i = 0; i < n; i ++){
+            if(arr[i] % 3 === 0 && arr[i] % 5 === 0){
+                sum += arr[i];
+            }
+        }
+
+        result.innerText = `Tổng của các số là bội chung của 3 và 5 là: ${sum}`;
+    </script>
+</body>
+</html>

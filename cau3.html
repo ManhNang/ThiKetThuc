@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="numK" placeholder="Nhập số muốn chia hết..">
+    <button id="myBtn">Search</button>
+    <p id="result"></p>
+    <script>
+        function searchDivisiblePair(arr, k){
+            let divisiblePair = {
+                count : 0,
+                value : ""
+            };
+
+            for(let i = 0; i < arr.length; i++){
+                for(let j = i + 1; j < arr.length; j++){
+                    if ((arr[i] + arr[j]) % k === 0) {
+                        divisiblePair.value += `(${arr[i]},${arr[j]})`;
+                        divisiblePair.count++;
+                    }
+                }
+            }
+
+            return divisiblePair;
+        }
+        const n = parseInt(prompt("Nhập số lượng phần tử mảng (tối đa 50 phần tử): "));
+            if(n < 1 || n > 50 || Number.isNaN(n)){
+                alert("Số lượng phần tử không hợp lệ. Số lượng trong khoảng từ 1 đến 50.");
+            }
+
+        const arr = [];
+        for(let i = 0; i < n; i++){
+            arr.push(parseInt(prompt("Nhập phần tử thứ " + (i) + ": ")));
+        }
+
+        const myBtn = document.getElementById("myBtn");
+        myBtn.onclick = () => {
+            const k = parseInt(document.getElementById("numK").value);
+            if(!k || k < 1){
+                result.innerText = "K phải là số nguyên dương!";
+                return;
+            }
+            let divisiblePair = searchDivisiblePair(arr, k);
+            result.innerText = `Kết quả có ${divisiblePair.count} cặp số thỏa mãn yêu cầu là ${divisiblePair.value}.`;
+        }
+    </script>
+</body>
+</html>

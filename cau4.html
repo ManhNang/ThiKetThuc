@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="myForm">
+        <input type="text" id="id" required placeholder="Nhập ID.."><br><br>
+        <input type="text" id="name" required placeholder="Nhập tên.."><br><br>
+        <input type="tel" id="phoneNumber" required placeholder="Nhập số điện thoại.."><br><br>
+        <input type="email" id="email" required placeholder="Nhập email.."><br><br>
+        <input type="submit" id="submit" value="Thêm vào danh sách"><br><br>
+    </form>
+
+    <table id="myTable" border="1">
+        <thead>
+            <tr>
+                <th>ID khách hàng</th>
+                <th>Tên khách hàng</th>
+                <th>Số điện thoại</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody id="show">
+
+        </tbody>
+    </table>
+
+    <script>
+        class Customer {
+            constructor(id, name, phoneNumber, address, email) {
+                this.id = id;
+                this.name = name;
+                this.phoneNumber = phoneNumber;
+                this.address = address;
+                this.email = email;
+            }
+        }
+
+        customers = [];
+        const myForm = document.getElementById("myForm");
+        myForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const id = document.getElementById("id").value;
+            const name = document.getElementById("name").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const email = document.getElementById("email").value;
+
+            if(!id || !name || !phoneNumber || !email){
+                alert("Chưa nhập đủ thông tin khách hàng!");
+                return;
+            }
+
+            customers.push(new Customer(id, name, phoneNumber, email));
+            const show = document.getElementById("show");
+            let str = "";
+            customers.forEach(customer => {
+                str += `<tr>
+                <th>${customer.id}</th>
+                <th>${customer.name}</th>
+                <th>${customer.phoneNumber}</th>
+                <th>${customer.email}</th>
+            </tr>`;
+            });
+            show.innerHTML = str; 
+        })
+    </script>
+</body>
+</html>
