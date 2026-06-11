@@ -10,6 +10,7 @@
         <input type="text" id="id" required placeholder="Nhập ID.."><br><br>
         <input type="text" id="name" required placeholder="Nhập tên.."><br><br>
         <input type="tel" id="phoneNumber" required placeholder="Nhập số điện thoại.."><br><br>
+        <input type="text" id="address" required placeholder="Nhập địa chỉ.."><br><br>
         <input type="email" id="email" required placeholder="Nhập email.."><br><br>
         <input type="submit" id="submit" value="Thêm vào danh sách"><br><br>
     </form>
@@ -20,6 +21,7 @@
                 <th>ID khách hàng</th>
                 <th>Tên khách hàng</th>
                 <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
                 <th>Email</th>
             </tr>
         </thead>
@@ -47,14 +49,15 @@
             const id = document.getElementById("id").value;
             const name = document.getElementById("name").value;
             const phoneNumber = document.getElementById("phoneNumber").value;
+            const address = document.getElementById("address").value;
             const email = document.getElementById("email").value;
 
-            if(!id || !name || !phoneNumber || !email){
+            if(!id || !name || !phoneNumber || !address || !email){
                 alert("Chưa nhập đủ thông tin khách hàng!");
                 return;
             }
 
-            customers.push(new Customer(id, name, phoneNumber, email));
+            customers.push(new Customer(id, name, phoneNumber, address, email));
             const show = document.getElementById("show");
             let str = "";
             customers.forEach(customer => {
@@ -62,6 +65,7 @@
                 <th>${customer.id}</th>
                 <th>${customer.name}</th>
                 <th>${customer.phoneNumber}</th>
+                <th>${customer.address}</th>
                 <th>${customer.email}</th>
             </tr>`;
             });
